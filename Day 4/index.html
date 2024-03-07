@@ -7,7 +7,52 @@
   </head>
   <body>
     <main style="margin: auto; max-width: fit-content">
-      <h1>This is an Day-4 ZEN CLASS Task</h1> 
+      <h1>This is an Day-4 ZEN CLASS Task</h1>
+      <h3>Print odd numbers</h3>
+      <form id="odd-num-inp">
+        <label for="odd-num-arr"></label>
+        <input
+          type="number"
+          name="odd-num-inp"
+          id="oddNumArr"
+          placeholder="1234"
+        />
+        <button type="submit">Submit</button>
+      </form>
+      <p>Odd numbers are: <span id="odd-num-arr-result"></span></p>
+      <h3>Convert the strings to Title Caps</h3>
+
+      <form id="string-input-form">
+        <label for="odd-num-arr"></label>
+        <input
+          type="text"
+          name="string-inp"
+          id="stringInp"
+          placeholder="hello world"
+        />
+        <button type="submit">Submit</button>
+      </form>
+      <p>Converted to title caps: <span id="title-caps-str-result"></span></p>
+      <h3>Sum of all numbers in an array</h3>
+      <form id="sum-of-number-input-form">
+        <label for="odd-num-arr"></label>
+        <input
+          type="number"
+          name="number-inp"
+          id="numberInp"
+          placeholder="1234"
+        />
+        <span id="sum-of-number-input-form-alert"></span>
+        <button type="button" id="addToArrayBtn" onclick="{addToArray()}">
+          Add to array
+        </button>
+        <button type="button" id="removeElementInArrayBtn">
+          Remove element
+        </button>
+        <button type="submit">Submit</button>
+      </form>
+      <p>Array : <span id="sum-of-number-input-display"></span></p>
+      <p>Sum of all numbers : <span id="sum-of-nums-result"></span></p>
     </main>
     <script src="script.js"></script>
   </body>
