@@ -8,7 +8,15 @@
   }
 })([1, 2, 3, 4, 5, 6, 7]);
 
-//Anonymous
+//Anonymous (Including HTML display, Not in Task)
+const oddnumsInputForm = document.getElementById("odd-num-inp");
+let oddNumsInputArr = [];
+oddnumsInputForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  oddNumsInputArr = oddnumsInputForm[0].value.split("");
+  printOddNumber(oddNumsInputArr);
+});
+
 let printOddNumber = function (arr) {
   let result = "";
   for (let i = 0; i < arr.length; i++) {
@@ -40,11 +48,14 @@ printOddinArrow([1, 2, 3, 4, 5, 6, 7]);
 // Convert all the strings to title caps in a string array
 //IIFE
 (function convertToTitleCaps(strArr) {
-  const strArr = str.trim().split(" ");
   let titleCapsStr = "";
   for (let i = 0; i < strArr.length; i++) {
-    titleCapsStr +=
-      strArr[i][0].toUpperCase() + strArr[i].substring(1).toLowerCase() + " ";
+    let inputStr = strArr[i].trim().split(" ");
+    for (let index = 0; index < inputStr.length; index++) {
+      const element = inputStr[index];
+      titleCapsStr +=
+        element[0].toUpperCase() + element.substring(1).toLowerCase() + " ";
+    }
   }
   console.log(titleCapsStr);
 })([
@@ -53,7 +64,15 @@ printOddinArrow([1, 2, 3, 4, 5, 6, 7]);
   "Convert all the strings to title caps in a string array",
 ]);
 
-// Anonymous
+// Anonymous (Including HTML display, Not in Task)
+const StringInputForm = document.getElementById("string-input-form");
+let stringInput = "";
+StringInputForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  stringInput = StringInputForm[0].value.trim();
+  convertToTitleCaps(stringInput);
+});
+
 let convertToTitleCaps = function (str) {
   const strArr = str.trim().split(" ");
   let titleCapsStr = "";
@@ -70,18 +89,21 @@ let convertToTitleCaps = function (str) {
 convertToTitleCaps(stringInput);
 
 //Arrow function
-let convertToTitleCapsInArrow = (str) => {
-  const strArr = str.trim().split(" ");
+let convertToTitleCapsInArrow = (strArr) => {
   let titleCapsStr = "";
   for (let i = 0; i < strArr.length; i++) {
-    titleCapsStr +=
-      strArr[i][0].toUpperCase() + strArr[i].substring(1).toLowerCase() + " ";
+    let inputStr = strArr[i].trim().split(" ");
+    for (let index = 0; index < inputStr.length; index++) {
+      const element = inputStr[index];
+      titleCapsStr +=
+        element[0].toUpperCase() + element.substring(1).toLowerCase() + " ";
+    }
   }
   console.log(titleCapsStr);
 };
-convertToTitleCapsInArrow(
-  "Convert all the strings to title caps in a string array"
-);
+convertToTitleCapsInArrow([
+  "Convert all the strings to title caps in a string array",
+]);
 
 // Sum of all numbers in an array
 //IIFE
@@ -93,7 +115,46 @@ convertToTitleCapsInArrow(
   console.log(sum);
 })([1, 5, 1, 5, 9, 23, 25]);
 
-// Anonymous
+// Anonymous (Including HTML display, Not in Task)
+let sumofNumsArr = [];
+let sumofNumberInputForm = document.getElementById("sum-of-number-input-form");
+let sumofNumberWarningFlag = false;
+function addToArray() {
+  let numberInput = parseInt(document.getElementById("numberInp").value);
+  if (typeof numberInput !== "string" && !isNaN(numberInput)) {
+    sumofNumberWarningFlag = false;
+    sumofNumsArr.push(numberInput);
+    document.getElementById(
+      "sum-of-number-input-display"
+    ).innerHTML = `[${sumofNumsArr.toString()}]`;
+  } else {
+    sumofNumberWarningFlag = true;
+  }
+  if (sumofNumberWarningFlag) {
+    document.getElementById("sum-of-number-input-form-alert").innerHTML =
+      "<= Not An Number";
+  } else {
+    document.getElementById("sum-of-number-input-form-alert").innerHTML = "";
+  }
+}
+let removeElementInArrayBtn = document.getElementById(
+  "removeElementInArrayBtn"
+);
+removeElementInArrayBtn.addEventListener("click", () => {
+  if (sumofNumsArr.length >= 1) {
+    sumofNumsArr.pop();
+    document.getElementById(
+      "sum-of-number-input-display"
+    ).innerHTML = `[${sumofNumsArr.toString()}]`;
+  } else {
+    document.getElementById("sum-of-number-input-display").innerHTML = `[]`;
+  }
+});
+sumofNumberInputForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  sumAllNum(sumofNumsArr);
+});
+
 let sumAllNum = function (numArr) {
   let sum = 0;
   for (let i = 0; i < numArr.length; i++) {
@@ -336,59 +397,7 @@ else console.log("Doesn't work for arrays of unequal size");
  *
  */
 // Print odd numbers in an array
-const oddnumsInputForm = document.getElementById("odd-num-inp");
-let oddNumsInputArr = [];
-oddnumsInputForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  oddNumsInputArr = oddnumsInputForm[0].value.split("");
-  printOddNumber(oddNumsInputArr);
-});
 
 // Convert all the strings to title caps in a string array
-const StringInputForm = document.getElementById("string-input-form");
-let stringInput = "";
-StringInputForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  stringInput = StringInputForm[0].value.trim();
-  convertToTitleCaps(stringInput);
-});
 
 // Sum of all numbers in an array
-let sumofNumsArr = [];
-let sumofNumberInputForm = document.getElementById("sum-of-number-input-form");
-let sumofNumberWarningFlag = false;
-function addToArray() {
-  let numberInput = parseInt(document.getElementById("numberInp").value);
-  if (typeof numberInput !== "string" && !isNaN(numberInput)) {
-    sumofNumberWarningFlag = false;
-    sumofNumsArr.push(numberInput);
-    document.getElementById(
-      "sum-of-number-input-display"
-    ).innerHTML = `[${sumofNumsArr.toString()}]`;
-  } else {
-    sumofNumberWarningFlag = true;
-  }
-  if (sumofNumberWarningFlag) {
-    document.getElementById("sum-of-number-input-form-alert").innerHTML =
-      "<= Not An Number";
-  } else {
-    document.getElementById("sum-of-number-input-form-alert").innerHTML = "";
-  }
-}
-let removeElementInArrayBtn = document.getElementById(
-  "removeElementInArrayBtn"
-);
-removeElementInArrayBtn.addEventListener("click", () => {
-  if (sumofNumsArr.length >= 1) {
-    sumofNumsArr.pop();
-    document.getElementById(
-      "sum-of-number-input-display"
-    ).innerHTML = `[${sumofNumsArr.toString()}]`;
-  } else {
-    document.getElementById("sum-of-number-input-display").innerHTML = `[]`;
-  }
-});
-sumofNumberInputForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  sumAllNum(sumofNumsArr);
-});
