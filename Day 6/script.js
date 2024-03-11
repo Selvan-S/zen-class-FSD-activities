@@ -5,20 +5,31 @@ class Movie {
     this.studio = studio;
     this.rating = rating;
   }
+
   getPg(arr) {
     const newArr = [];
+
     arr.forEach((element) => {
       if (element == this.title && this.rating == "PG") {
         newArr.push(this.title);
       }
     });
-    return newArr;
+
+    if (newArr.length <= 0) {
+      return "No PG movies";
+    } else return newArr;
   }
 }
+Movie.prototype.getDetails = function () {
+  console.log(`
+  Title: ${this.title}
+  Studio: ${this.studio}
+  Rating: ${this.rating}`);
+};
 
-const movie = new Movie("Casino Royale", "Eon Productions", "PG13");
-console.log(movie);
-console.log(movie.getPg(["Casino Royale", "Leo", "Sura"]));
+const movie = new Movie("Casino Royale", "Eon Productions");
+movie.getDetails();
+console.log("Get PG ", movie.getPg(["Casino Royale", "Leo", "Sura"]));
 
 //  Task 2
 class Circle {
@@ -53,6 +64,7 @@ class Circle {
 
 let circle = new Circle(2, "yellow");
 console.log(circle);
+
 console.log(circle.getRadius());
 console.log(circle.getColor());
 console.log(circle.getArea());
@@ -60,6 +72,7 @@ console.log(circle.getCircumference());
 console.log(circle.toString());
 
 circle.setRadius(2);
+
 console.log(circle.getArea());
 console.log(circle.getCircumference());
 circle.setColor("green");
@@ -73,13 +86,14 @@ class Person {
   constructor(name, gender, course, position) {
     this.name = name;
     this.gender = () => {
-      if (gender.length != 0) {
+      if (gender.trim().length != 0) {
         return gender;
       } else return "prefer not to say";
     };
     this.course = course;
     this.position = position;
   }
+
   displayDetails() {
     console.log(`
     Name: ${this.name}

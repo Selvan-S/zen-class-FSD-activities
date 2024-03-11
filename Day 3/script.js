@@ -54,17 +54,17 @@ xhr.onload = function () {
     for (let i = 0; i <= 5; i++) {
       let cell = row.insertCell(i);
       if (i == 0) {
-        cell.innerHTML = "<center><b>No.</b></center>";
+        cell.innerHTML = "<b>No.</b>";
       } else if (i == 1) {
-        cell.innerHTML = "<center><b>Country</b></center>";
+        cell.innerHTML = "<b>Country</b>";
       } else if (i == 2) {
-        cell.innerHTML = "<center><b>Region</b></center>";
+        cell.innerHTML = "<b>Region</b>";
       } else if (i == 3) {
-        cell.innerHTML = "<center><b>Sub Region</b></center>";
+        cell.innerHTML = "<b>Sub Region</b>";
       } else if (i == 4) {
-        cell.innerHTML = "<center><b>Population</b></center>";
+        cell.innerHTML = "<b>Population</b>";
       } else {
-        cell.innerHTML = "<center><b>Flag</b></center>";
+        cell.innerHTML = "<b>Flag</b>";
       }
       cell.style.border = "1px solid black";
     }

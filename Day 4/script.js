@@ -9,6 +9,7 @@
 })([1, 2, 3, 4, 5, 6, 7]);
 
 //Anonymous (Including HTML display, Not in Task)
+// Get inputs from HTML and displaying the result
 const oddnumsInputForm = document.getElementById("odd-num-inp");
 let oddNumsInputArr = [];
 oddnumsInputForm.addEventListener("submit", (event) => {
@@ -17,6 +18,7 @@ oddnumsInputForm.addEventListener("submit", (event) => {
   printOddNumber(oddNumsInputArr);
 });
 
+// Task starts Here
 let printOddNumber = function (arr) {
   let result = "";
   for (let i = 0; i < arr.length; i++) {
@@ -65,6 +67,7 @@ printOddinArrow([1, 2, 3, 4, 5, 6, 7]);
 ]);
 
 // Anonymous (Including HTML display, Not in Task)
+// Get inputs from HTML and displaying the result
 const StringInputForm = document.getElementById("string-input-form");
 let stringInput = "";
 StringInputForm.addEventListener("submit", (event) => {
@@ -73,6 +76,7 @@ StringInputForm.addEventListener("submit", (event) => {
   convertToTitleCaps(stringInput);
 });
 
+// Task starts Here
 let convertToTitleCaps = function (str) {
   const strArr = str.trim().split(" ");
   let titleCapsStr = "";
@@ -116,6 +120,7 @@ convertToTitleCapsInArrow([
 })([1, 5, 1, 5, 9, 23, 25]);
 
 // Anonymous (Including HTML display, Not in Task)
+// Get inputs from HTML and displaying the result
 let sumofNumsArr = [];
 let sumofNumberInputForm = document.getElementById("sum-of-number-input-form");
 let sumofNumberWarningFlag = false;
@@ -155,6 +160,7 @@ sumofNumberInputForm.addEventListener("submit", (event) => {
   sumAllNum(sumofNumsArr);
 });
 
+// Task starts here
 let sumAllNum = function (numArr) {
   let sum = 0;
   for (let i = 0; i < numArr.length; i++) {
@@ -327,7 +333,50 @@ let palindromeInArrow = (palindromesArr) => {
 palindromeInArrow([15, 587, 4657]);
 
 // Return median of two sorted arrays of the same size.
-function getMedian(ar1, ar2, n) {
+// IIFE
+(function getMedian(ar1, ar2) {
+  let n = ar1.length;
+  let n2 = ar2.length;
+  let i = 0;
+  let j = 0;
+  let count;
+  let m1 = -1,
+    m2 = -1;
+
+  for (count = 0; count <= n; count++) {
+    if (i == n) {
+      m1 = m2;
+      m2 = ar2[0];
+      break;
+    } else if (j == n) {
+      m1 = m2;
+      m2 = ar1[0];
+
+      break;
+    }
+
+    if (ar1[i] <= ar2[j]) {
+      m1 = m2;
+      m2 = ar1[i];
+
+      i++;
+    } else {
+      m1 = m2;
+      m2 = ar2[j];
+
+      j++;
+    }
+  }
+  let result = (m1 + m2) / 2;
+  if (n == n2) console.log("Median is " + result);
+  else console.log("Doesn't work for arrays of unequal size");
+})(
+  [1, 3, 4, 9, 6].sort((a, b) => a - b),
+  [2, 5, 7, 8, 10].sort((a, b) => a - b)
+);
+
+// Anonymous
+const getMedian = function (ar1, ar2, n) {
   let i = 0;
   let j = 0;
   let count;
@@ -360,7 +409,7 @@ function getMedian(ar1, ar2, n) {
   }
 
   return (m1 + m2) / 2;
-}
+};
 let ar1 = [1, 3, 4, 9, 6].sort((a, b) => a - b);
 let ar2 = [2, 5, 7, 8, 10].sort((a, b) => a - b);
 let n1 = ar1.length;
@@ -369,6 +418,7 @@ if (n1 == n2) console.log("Median is " + getMedian(ar1, ar2, n1));
 else console.log("Doesn't work for arrays of unequal size");
 
 // Remove duplicates from an array
+// IIFE
 (function removeDuplicate(arr) {
   let obj = {};
   let removedDuplicateArr = [];
@@ -380,8 +430,22 @@ else console.log("Doesn't work for arrays of unequal size");
   }
   console.log(removedDuplicateArr);
 })([1, 5, 6, 5, 93, 2002, 54, 93]);
+// Anonymous
+let removeDuplicate = function (arr) {
+  let obj = {};
+  let removedDuplicateArr = [];
+  for (const element of arr) {
+    if (!obj[element]) {
+      removedDuplicateArr.push(element);
+      obj[element] = true;
+    }
+  }
+  return removedDuplicateArr;
+};
+console.log(removeDuplicate([1, 5, 6, 5, 93, 2002, 54, 93, 2002, 56]));
 
 // Rotate an array by k times
+// IIFE
 (function rotateArray(arr, k) {
   let rotatedArr = [...arr];
   for (let i = 0; i < k; i++) {
@@ -390,14 +454,13 @@ else console.log("Doesn't work for arrays of unequal size");
   }
   console.log(rotatedArr);
 })([1, 5, 6, 5, 93, 2002, 54, 93], 3);
-
-/**
- * Trying to Display all task in HTML, Not in task
- *
- *
- */
-// Print odd numbers in an array
-
-// Convert all the strings to title caps in a string array
-
-// Sum of all numbers in an array
+// Anonymous
+let rotateArray = function (arr, k) {
+  let rotatedArr = [...arr];
+  for (let i = 0; i < k; i++) {
+    let lastElement = rotatedArr.splice(rotatedArr.length - 1, 1);
+    rotatedArr = [...lastElement, ...rotatedArr];
+  }
+  return rotatedArr;
+};
+console.log(rotateArray([1, 5, 6, 5, 93, 2002, 54, 93], 2));
