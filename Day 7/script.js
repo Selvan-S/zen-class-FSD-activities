@@ -3,7 +3,6 @@ xhr.open("GET", "https://restcountries.com/v3.1/all");
 xhr.send();
 xhr.onload = function () {
   const data = JSON.parse(xhr.response);
-  console.log(data);
 
   // Get all the countries from Asia continent 'region using Filter function
   const asia_countries = data
