@@ -35,17 +35,14 @@ xhr.onload = function () {
   console.log();
 
   // Print the following details name, capital, flag. using forEach function
-  const countries_details = data.map((val, index) => {
-    return [val.name.common, val.capital, val.flag, index];
-  });
   console.log(
     "--------- All the countries of following details: name, capital ----------"
   );
-  countries_details.forEach((element) => {
+  data.forEach((element) => {
     console.log(`
-    Name: ${element[0]}
-    Capital: ${element[1]}
-    Flag: ${element[2]}`);
+    Name: ${element.name.common}
+    Capital: ${element.capital}
+    Flag: ${element.flag}`);
   });
   console.log();
 
