@@ -36,7 +36,7 @@ xhr.onload = function () {
 
   // Print the following details name, capital, flag. using forEach function
   console.log(
-    "--------- All the countries of following details: name, capital ----------"
+    "--------- All the countries of following details: Name, Capital and Flag ----------"
   );
   data.forEach((element) => {
     console.log(`
